@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Practice2Course.Data.Models.Countries>
+<!DOCTYPE html>
+
+<h1>Результат поиска</h1>
+
+<div class="row mt-5 row-cols-sm-2 row-cols-md-3 g-3">
+    @{
+        foreach (var country in Model)
+        {
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="img-thumbnail" src="@country.ImgUrl" />
+
+                    <div class="card-body">
+                        <h4>@country.CountryName</h4>
+                        <p class="card-text">@country.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a type="button" asp-controller="Main" asp-action="SelectedCities" asp-route-id="@country.CountryId" class="btn btn-sm btn-outline-primary">Перейти к городам</a>
+                                <a type="button" href="@country.MapUrl" target="_blank" class="btn btn-sm btn-outline-primary">На карте</a>
+                                <a type="button" asp-controller="Change" asp-action="ChangeCountry" asp-route-id="@country.CountryId" class="btn btn-sm btn-outline-secondary">Изменить</a>
+                                <a type="button" asp-controller="Delete" asp-action="DeleteCountry" asp-route-id="@country.CountryId" class="btn btn-sm btn-outline-danger">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+</div>

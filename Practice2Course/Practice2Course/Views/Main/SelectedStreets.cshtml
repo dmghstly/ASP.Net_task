@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Practice2Course.Data.Models.RoadSystem>
+@using Practice2Course.Data;
+<!DOCTYPE html>
+
+
+@{
+    
+    <form method="post" class="border-bottom" asp-action="SelectedStreets">
+        <h4 class="my-3">Фильтры</h4>
+        <div class="row row-cols-2 row-cols-lg-5">
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.All" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Все
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.UlFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Улица
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.PereUlFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Переулок
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.ProsFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Проспект
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.ShosFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Шоссе
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.ProezdFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Проезд
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.BoulFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Бульвар
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.DorFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Дорога
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.AveFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Авеню
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="roadFilters.PlFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Площадь
+                </label>
+            </div>
+        </div>
+        <input class="my-4 btn btn-warning" type="submit" value="Отфильтровать" />
+    </form>
+    <h1>@ViewBag.Message</h1>
+    <div class="row mt-5 row-cols-sm-2 row-cols-md-3 g-3">
+        @{
+            foreach (var street in Model)
+            {
+
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img class="img-thumbnail" src="@street.ImgUrl" />
+
+                        <div class="card-body">
+                            <h4>@HelpElements.Abbs[street.TypeId] @street.StreetName</h4>
+                            <p class="card-text">@street.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a type="button" asp-controller="Main" asp-action="SelectedObjectsbyStreet" asp-route-id="@street.StreetId" class="btn btn-sm btn-outline-primary">Объекты</a>
+                                    <a type="button" href="@street.MapUrl" target="_blank" class="btn btn-sm btn-outline-primary">На карте</a>
+                                    <a type="button" asp-controller="Change" asp-action="ChangeRoad" asp-route-id="@street.StreetId" class="btn btn-sm btn-outline-secondary">Изменить</a>
+                                    <a type="button" asp-controller="Delete" asp-action="DeleteRoad" asp-route-id="@street.StreetId" class="btn btn-sm btn-outline-danger">Удалить</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+    </div>
+}

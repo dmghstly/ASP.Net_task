@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+@model Practice2Course.Data.Models.UrbanObject;
+@using Practice2Course.Data;
+
+<h1>Удаление объекта</h1>
+
+<div class="col-md-7 col-lg-8">
+    <form method="post" asp-action="DeleteObject" class="form-horizontal">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">@Model.ObjectName, @Model.Addres, @HelpElements.CitiesDictionary[HelpElements.HelpCityID]</h2>
+                <span class="text-muted">@HelpElements.UrbanTypesDictionary[Model.TypeId]</span>
+                <p class="lead">@Model.Description</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="img-thumbnail" src="@Model.ImgUrl" />
+            </div>
+        </div>
+        <input class="my-4 btn btn-danger" type="submit" value="Удалить объект" />
+    </form>
+</div>

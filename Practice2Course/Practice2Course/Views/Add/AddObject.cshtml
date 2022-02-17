@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+@using Practice2Course.Data;
+@model Practice2Course.Data.Models.UrbanObject;
+
+<h1>@ViewBag.Message</h1>
+
+<div class="col-md-7 col-lg-8">
+    <form method="post" asp-action="AddObject" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="TypeId"></label>
+            <select asp-for="TypeId" class="form-select col-6">
+                @foreach (var el in HelpElements.UrbanTypesDictionary)
+                {
+                    <option value="@el.Key">@el.Value</option>
+                }
+            </select>
+            <span asp-validation-for="TypeId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ObjectName"></label>
+            <div class="col-12">
+                <input asp-for="ObjectName" class="form-control">
+                <span asp-validation-for="ObjectName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImgUrl"></label>
+            <div class="col-12">
+                <input asp-for="ImgUrl" class="form-control">
+                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MapUrl"></label>
+            <div class="col-12">
+                <input asp-for="MapUrl" class="form-control">
+                <span asp-validation-for="MapUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <div class="col-12">
+                <input asp-for="Description" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="StreetId"></label>
+            <select asp-for="StreetId" class="form-select col-6">
+                @foreach (var el in HelpElements.StreetDictionary[HelpElements.HelpCityID])
+                {
+                    <option value="@el.Key">@el.Value</option>
+                }
+            </select>
+            <span asp-validation-for="StreetId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Number"></label>
+            <div class="col-12">
+                <input asp-for="Number" class="form-control">
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <span asp-validation-for="Number" class="text-danger"></span>
+        </div>
+        <input class="my-4 btn btn-success" type="submit" value="Добавить объект" />
+    </form>
+</div>

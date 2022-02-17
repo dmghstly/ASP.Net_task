@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+@model Practice2Course.Data.Models.Countries;
+
+<h1>Удаление страны</h1>
+
+<div class="col-md-7 col-lg-8">
+    <form method="post" asp-action="DeleteCountry" class="form-horizontal">
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">@Model.CountryName</h2>
+                <p class="lead">@Model.Description</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="img-thumbnail" src="@Model.ImgUrl" />
+
+            </div>
+        </div>
+        <input class="my-4 btn btn-danger" type="submit" value="Удалить страну" />
+    </form>
+</div>

@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+@using Practice2Course.Data;
+@model Practice2Course.Data.Models.FileName;
+
+<h1>Введите имя файла</h1>
+
+<div class="col-md-7 col-lg-8">
+    <form method="post" asp-action="MakeFileName" class="form-horizontal">
+        <label asp-for="Name"></label>
+        <div class="form-group">
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <input class="my-4 btn btn-success" type="submit" value="Продолжить" />
+    </form>
+</div>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+@using Practice2Course.Data;
+@model Practice2Course.Data.Models.Cities;
+
+<h1>Добавление города</h1>
+
+<div class="col-md-7 col-lg-8">
+    <form method="post" asp-action="AddCity" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="CityName"></label>
+            <div class="col-12">
+                <input asp-for="CityName" class="form-control">
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImgUrl"></label>
+            <div class="col-12">
+                <input asp-for="ImgUrl" class="form-control">
+                <span asp-validation-for="ImgUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MapUrl"></label>
+            <div class="col-12">
+                <input asp-for="MapUrl" class="form-control">
+                <span asp-validation-for="MapUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <div class="col-12">
+                <input asp-for="Description" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CountryId"></label>
+            <select asp-for="CountryId" class="form-select col-6">
+                @foreach (var el in HelpElements.CountriesDictionary)
+                {
+                    <option value="@el.Key">@el.Value</option>
+                }
+            </select>
+            <span asp-validation-for="CountryId" class="text-danger"></span>
+        </div>
+
+        <input class="my-4 btn btn-success" type="submit" value="Добавить город" />
+    </form>
+</div>

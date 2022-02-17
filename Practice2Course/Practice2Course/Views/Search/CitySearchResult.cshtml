@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Practice2Course.Data.Models.Cities>
+<!DOCTYPE html>
+
+<h1>Результат поиска</h1>
+
+<div class="row mt-5 row-cols-sm-2 row-cols-md-3 g-3">
+    @{
+        foreach (var city in Model)
+        {
+
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img class="img-thumbnail" src="@city.ImgUrl" />
+
+                    <div class="card-body">
+                        <h4>@city.CityName, @Practice2Course.Data.HelpElements.CountriesDictionary[city.CountryId]</h4>
+                        <p class="card-text">@city.Description</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a type="button" asp-controller="Main" asp-action="SelectedObjectsbyCity" asp-route-id="@city.CityId" class="btn btn-sm btn-outline-primary">Объекты</a>
+                                <a type="button" asp-controller="Main" asp-action="SelectedStreets" asp-route-id="@city.CityId" class="btn btn-sm btn-outline-primary">Улицы</a>
+                                <a type="button" href="@city.MapUrl" target="_blank" class="btn btn-sm btn-outline-primary">На карте</a>
+                                <a type="button" asp-controller="Change" asp-action="ChangeCity" asp-route-id="@city.CityId" class="btn btn-sm btn-outline-secondary">Изменить</a>
+                                <a type="button" asp-controller="Delete" asp-action="DeleteCity" asp-route-id="@city.CityId" class="btn btn-sm btn-outline-danger">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    }
+</div>

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Practice2Course.Data.Models.UrbanObject>
+@using Practice2Course.Data;
+<!DOCTYPE html>
+
+<h1>Результаты поиска</h1>
+
+<div class="row mt-5">
+    @{
+        foreach (var uObject in Model)
+        {
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading">@uObject.ObjectName, @uObject.Addres, @HelpElements.CitiesDictionary[HelpElements.HelpCityID]</h2>
+                    <span class="text-muted">@HelpElements.UrbanTypesDictionary[uObject.TypeId]</span>
+                    <p class="lead">@uObject.Description</p>
+                    <a class="btn btn-primary" href="@uObject.MapUrl" target="_blank">На карте</a>
+                    <a class="btn btn-secondary" asp-controller="Change" asp-action="ChangeObject" asp-route-id="@uObject.ObjectId">Изменить</a>
+                    <a class="btn btn-danger" asp-controller="Delete" asp-action="DeleteObject" asp-route-id="@uObject.ObjectId">Удалить</a>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img class="img-thumbnail" src="@uObject.ImgUrl" />
+                </div>
+            </div>
+        }
+    }
+</div>

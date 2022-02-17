@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExample07">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" tabindex="-1" aria-disabled="true">Страны</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Main" asp-action="CityPage" tabindex="-1" aria-disabled="true">Города</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Добавить</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" asp-controller="Add" asp-action="AddCountry">Страну</a></li>
+                            <li><a class="dropdown-item" asp-controller="Add" asp-action="AddCity">Город</a></li>
+                            <li><a class="dropdown-item" asp-controller="Add" asp-action="AddRoad">Улицу</a></li>
+                            <li><a class="dropdown-item" asp-controller="Add" asp-action="AddObjectChooseCity">Градостроительный объект</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Main" asp-action="MakeFileName" tabindex="-1" aria-disabled="true">Отчёт</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Main" asp-action="AboutSite" tabindex="-1" aria-disabled="true">О Сайте</a>
+                    </li>
+                </ul>
+                <form>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Поиск</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                            <li><a class="dropdown-item" asp-controller="Search" asp-action="CountrySearch">Страны...</a></li>
+                            <li><a class="dropdown-item" asp-controller="Search" asp-action="CitySearch">Города...</a></li>
+                            <li><a class="dropdown-item" asp-controller="Search" asp-action="RoadSearch">Улицы...</a></li>
+                            <li><a class="dropdown-item" asp-controller="Search" asp-action="ObjectSearch">Объекта...</a></li>
+                            <li><a class="dropdown-item" asp-controller="Search" asp-action="ObjectAddresSearch">По адресу объекта...</a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-lg-5">
+        @RenderBody()
+    </div>
+    <footer class="container">
+        <p class="float-end"><a href="#">Вверх</a></p>
+        <p>2021 HSE Perm · Made by Makarov Dmitriy</p>
+    </footer>
+    <script src="~/js/bootstrap.min.js"></script>
+</body>
+</html>

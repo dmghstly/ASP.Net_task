@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+@using Practice2Course.Data;
+@model Practice2Course.Data.Models.UrbanObject;
+
+<h1>Поиск объекта по имени</h1>
+
+<div class="col-md-7 col-lg-8">
+    <form method="post" asp-action="ObjectSearch" class="form-horizontal">
+        <label asp-for="ObjectName"></label>
+        <div class="form-group">
+            <input asp-for="ObjectName" class="form-control">
+            <span asp-validation-for="ObjectName" class="text-danger"></span>
+        </div>
+        <input class="my-4 btn btn-success" type="submit" value="Поиск" />
+    </form>
+</div>

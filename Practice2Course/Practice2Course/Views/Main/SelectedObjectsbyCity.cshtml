@@ -1,0 +1,109 @@
+﻿@model IEnumerable<Practice2Course.Data.Models.UrbanObject>
+@using Practice2Course.Data;
+<!DOCTYPE html>
+
+
+@{
+    <form method="post" class="border-bottom" asp-action="SelectedObjectsbyCity">
+        <h4 class="my-3">Фильтры</h4>
+        <div class="row row-cols-3 row-cols-lg-3">
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.All" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Все
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.IngFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Объект инженерной инфраструктуры
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.TranspFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Объект транспортной инфраструктуры
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.SocFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Объект социальной инфраструктуры
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.NatFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Природная территория
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.ProdFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Производственная территория
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.LivFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Жилая территория
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.CultFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Объект культурного наследия
+                </label>
+            </div>
+            <div class="form-check col">
+                <input class="form-check-input" name="urbanFilters.CommFilter" type="checkbox" value="true">
+                <label class="form-check-label">
+                    Объект коммерческой инфраструктуры
+                </label>
+            </div>
+        </div>
+        <input class="my-4 btn btn-warning" type="submit" value="Отфильтровать" />
+    </form>
+
+    <h1>@ViewBag.Message</h1>
+
+    <div class="row mt-5">
+        @{
+            foreach (var uObject in Model)
+            {
+                if (uObject.Addres != "- ")
+                {
+                    <div class="row featurette">
+                        <div class="col-md-7 order-md-2">
+                            <h2 class="featurette-heading">@uObject.ObjectName, @uObject.Addres, @HelpElements.CitiesDictionary[HelpElements.HelpCityID]</h2>
+                            <span class="text-muted">@HelpElements.UrbanTypesDictionary[uObject.TypeId]</span>
+                            <p class="lead">@uObject.Description</p>
+                            <a class="btn btn-primary" href="@uObject.MapUrl" target="_blank">На карте</a>
+                            <a class="btn btn-secondary" asp-controller="Change" asp-action="ChangeObject" asp-route-id="@uObject.ObjectId">Изменить</a>
+                            <a class="btn btn-danger" asp-controller="Delete" asp-action="DeleteObject" asp-route-id="@uObject.ObjectId">Удалить</a>
+                        </div>
+                        <div class="col-md-5 order-md-1">
+                            <img class="img-thumbnail" src="@uObject.ImgUrl" />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row featurette">
+                        <div class="col-md-7 order-md-2">
+                            <h2 class="featurette-heading">@uObject.ObjectName, @HelpElements.CitiesDictionary[HelpElements.HelpCityID]</h2>
+                            <span class="text-muted">@HelpElements.UrbanTypesDictionary[uObject.TypeId]</span>
+                            <p class="lead">@uObject.Description</p>
+                            <a class="btn btn-primary" href="@uObject.MapUrl" target="_blank">На карте</a>
+                            <a class="btn btn-secondary" asp-controller="Change" asp-action="ChangeObject" asp-route-id="@uObject.ObjectId">Изменить</a>
+                            <a class="btn btn-danger" asp-controller="Delete" asp-action="DeleteObject" asp-route-id="@uObject.ObjectId">Удалить</a>
+                        </div>
+                        <div class="col-md-5 order-md-1">
+                            <img class="img-thumbnail" src="@uObject.ImgUrl" />
+                        </div>
+                    </div>
+                }
+            }
+        }
+    </div>
+}
